@@ -1,0 +1,28 @@
+# define programs to be compiled and installed; $(bindir) @default /usr/local/bin
+bin_PROGRAMS = hello
+hello_SOURCES = hello.c
+
+# compile a static library to be installed; $(libdir) @default /usr/local/lib
+#lib_LIBRARIES = libsample.a
+#libsample_a_SOURCES = sample.c sample.h
+
+# compile a shared library to be installed; $(libdir) @default /usr/local/lib
+# using libtool (different library name to avoid confusion)
+# if this is used, the SHARED library file is also compiled
+lib_LTLIBRARIES = libsample2.la
+libsample2_la_SOURCES = sample.c sample.h
+
+# header files to be installed; $(includedir) @default /usr/local/include
+include_HEADERS = sample.h
+
+# define programs to be compiled but not installed
+# useful for test applications
+noinst_PROGRAMS = test
+test_SOURCES = test.c
+# assume test.c is using the shared library, using this to link
+test_LDADD = libsample2.la
+
+# one may include an optional argument as such
+# nodist_include_HEADERS (to not include in distribution)
+# distribution and installation is different! once installs to
+# the current system, the other prepares it to be used on another system
