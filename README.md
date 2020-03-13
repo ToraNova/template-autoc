@@ -1,4 +1,4 @@
-# Autotool C/C++ Template
+# Autotools C/C++ Template
 This directory acts as a template to start a Autotool project.
 The language this template supports are C and C++.
 
