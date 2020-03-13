@@ -1,6 +1,7 @@
 # define programs to be compiled and installed; $(bindir) @default /usr/local/bin
-bin_PROGRAMS = hello
+bin_PROGRAMS = hello helloplus
 hello_SOURCES = hello.c
+helloplus_SOURCES = xx.cpp
 
 # compile a static library to be installed; $(libdir) @default /usr/local/lib
 #lib_LIBRARIES = libsample.a
