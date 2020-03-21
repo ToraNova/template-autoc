@@ -19,7 +19,11 @@ AC_PROG_CXX
 
 # specify the header
 AC_CONFIG_HEADERS([config.h])
+AC_CONFIG_MACRO_DIRS([m4])
 
 # all makefiles (makefile.am) must be declared here. one .am per directory
 AC_CONFIG_FILES([makefile src/makefile])
+
+AC_DEFINE([EWLOG], [0], [Enable warning and error logs]) # enable warning and error logs
+
 AC_OUTPUT
