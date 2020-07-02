@@ -11,15 +11,18 @@ helloplus_SOURCES = xx.cpp
 # using libtool (different library name to avoid confusion)
 # if this is used, the SHARED library file is also compiled
 lib_LTLIBRARIES = libsample2.la
-libsample2_la_SOURCES = sample.c sample.h
+libsample2_la_SOURCES = sample.c
 
 # header files to be installed; $(includedir) @default /usr/local/include
 include_HEADERS = sample.h
 
+# the following block is enabled by
+# ../configure --enable-tests
+if COMPILETESTS
 # define programs to be compiled but not installed
 # useful for test applications
 noinst_PROGRAMS = test
-test_SOURCES = test.c
+test_SOURCES = tests/test.c
 # assume test.c is using the shared library, using this to link
 test_LDADD = libsample2.la
 
@@ -27,3 +30,21 @@ test_LDADD = libsample2.la
 # nodist_include_HEADERS (to not include in distribution)
 # distribution and installation is different! once installs to
 # the current system, the other prepares it to be used on another system
+endif
+
+# COMPLEX SETUP BELOW: ALLOW SELECTION OF DIFF UPSTREAM LIBRARIES
+# See configure.ac line 61 and beyond
+#if ULOPENSSL
+#libsigilmqv_la_SOURCES = \
+#		sigilcrypt_openssl.cpp \
+#		sigilmqv.cpp sigilmqv.c.cpp \
+#		utils/simplesock.c utils/bufhelp.c
+#libsigilmqv_la_LDFLAGS = -lcrypto
+#endif
+#if ULSODIUM
+#libsigilmqv_la_SOURCES = \
+#		sigilcrypt_sodium.cpp \
+#		sigilmqv.cpp sigilmqv.c.cpp \
+#		utils/simplesock.c utils/bufhelp.c
+#libsigilmqv_la_LDFLAGS = -lsodium
+#endif

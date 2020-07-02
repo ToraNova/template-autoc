@@ -18,6 +18,9 @@ extern "C"{
 //contains EWLOG defines and DEBUG
 // configure with the following line to allow debugging
 // ../configure CPPFLAGS=-DDEBUG CFLAGS="-g -O0"
+// As of Jul 03 2020, now with an easier approach
+// ../configure --enable-debug
+// ../configure --disable-ewlog
 #include "config.h"
 
 #define clean_errno() (errno == 0 ? "None" : strerror(errno))
